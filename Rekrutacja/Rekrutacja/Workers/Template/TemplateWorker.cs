@@ -44,10 +44,10 @@ namespace Rekrutacja.Workers.Template
             //Włączenie Debug, aby działał należy wygenerować DLL w trybie DEBUG
             DebuggerSession.MarkLineAsBreakPoint();
             //Pobieranie danych z Contextu
-            Pracownik pracownik = null;
-            if (this.Cx.Contains(typeof(Pracownik)))
+            Pracownik[] pracownicy = null;
+            if (this.Cx.Contains(typeof(Pracownik[])))
             {
-                pracownik = (Pracownik)this.Cx[typeof(Pracownik)];
+                pracownicy = (Pracownik[])this.Cx[typeof(Pracownik[])];
             }
 
             //Modyfikacja danych
@@ -58,7 +58,7 @@ namespace Rekrutacja.Workers.Template
                 using (ITransaction trans = nowaSesja.Logout(true))
                 {
                     //Pobieramy obiekt z Nowo utworzonej sesji
-                    var pracownikZSesja = nowaSesja.Get(pracownik);
+                    var pracownikZSesja = nowaSesja.Get(pracownicy[0]);
                     //Features - są to pola rozszerzające obiekty w bazie danych, dzięki czemu nie jestesmy ogarniczeni to kolumn jakie zostały utworzone przez producenta
                     pracownikZSesja.Features["DataObliczen"] = this.Parametry.DataObliczen;
                     //Zatwierdzamy zmiany wykonane w sesji
