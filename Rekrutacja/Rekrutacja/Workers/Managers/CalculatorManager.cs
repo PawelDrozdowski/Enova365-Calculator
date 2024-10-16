@@ -1,4 +1,6 @@
-﻿using Rekrutacja.Workers.Enums;
+﻿using ICSharpCode.NRefactory.TypeSystem.Implementation;
+using Rekrutacja.Extensions;
+using Rekrutacja.Workers.Enums;
 using Rekrutacja.Workers.Models;
 using System;
 using System.Collections.Generic;
@@ -11,6 +13,18 @@ namespace Rekrutacja.Workers.Managers
 {
     public class CalculatorManager
     {
+        public static CalculatorResults GetCalculatorResults(Pkt3WorkerParametry parametry)
+        {
+            var parsed = new Pkt2WorkerParametry(parametry.Context)
+            {
+                A = parametry.A.ConvertToInt(),
+                B = parametry.B.ConvertToInt(),
+                DataObliczen = parametry.DataObliczen,
+                Figura = parametry.Figura,
+            };
+            return GetCalculatorResults(parsed);//brudne, ale wystarczające na potrzeby demonstracji
+        }
+
         public static CalculatorResults GetCalculatorResults(Pkt2WorkerParametry parametry)
         {
             ThrowExceptionIfIllegalShape(parametry.Figura, parametry.A, parametry.B);
