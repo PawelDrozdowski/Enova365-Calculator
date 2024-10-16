@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using Rekrutacja.Workers.Enums;
 using Rekrutacja.Workers.Managers;
 using System;
@@ -9,10 +9,10 @@ using static Rekrutacja.Workers.Template.TemplateWorker;
 
 namespace Rekrutacja.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class CalculatorManagerTests
     {
-        [TestMethod]
+        [Test]
         public void Should_Return_Correct_Add_Operation()
         {
             //Arrange
@@ -53,7 +53,7 @@ namespace Rekrutacja.Tests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void Should_Return_Correct_Other_Operations()
         {
             //Arrange
@@ -123,7 +123,7 @@ namespace Rekrutacja.Tests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void Should_Throw_Exception_If_Divide_By_Zero()
         {
             //Arrange
@@ -145,7 +145,7 @@ namespace Rekrutacja.Tests
             catch (Exception) { Assert.Fail(); }
         }
 
-        [TestMethod]
+        [Test]
         public void Should_Return_Correct_Area()
         {
             //Arrange
@@ -198,7 +198,7 @@ namespace Rekrutacja.Tests
                 Assert.AreEqual(testData[i].Item1, (int)results[i]);
             }
         }
-        [TestMethod]
+        [Test]
         public void Should_Throw_Exception_If_Illegal_Square()
         {
             //Arrange
@@ -219,7 +219,7 @@ namespace Rekrutacja.Tests
             catch (ArgumentException) { }
             catch (Exception) { Assert.Fail(); }
         }
-        [TestMethod]
+        [Test]
         public void Should_Throw_Exception_If_Non_Positive_Dimensions()
         {
             //Arrange
@@ -240,8 +240,8 @@ namespace Rekrutacja.Tests
             catch (ArgumentException) { }
             catch (Exception) { Assert.Fail(); }
         }
-        [TestMethod]
-        public void Should_Throw_Exception_If_Non_Positive_Dimensions_Circle()
+        [Test]
+        public void Should_Allow_Non_Positive_B_Circle()
         {
             //Arrange
             Pkt2WorkerParametry testData = new Pkt2WorkerParametry(null)
@@ -256,9 +256,8 @@ namespace Rekrutacja.Tests
             try
             {
                 CalculatorManager.GetCalculatorResults(testData);
-                Assert.Fail(); // If it gets to this line, no exception was thrown
             }
-            catch (ArgumentException) { }
+            catch (ArgumentException) { Assert.Fail(); }
             catch (Exception) { Assert.Fail(); }
         }
     }

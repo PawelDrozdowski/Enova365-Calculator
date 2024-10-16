@@ -2,7 +2,7 @@
 <Project Sdk="Soneta.Sdk">
   <PropertyGroup>
     <TargetFramework>$(SonetaTargetFramework)</TargetFramework>
-    <PlatformTarget>x64</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <OutputPath>C:\Program Files\Common Files\Soneta\Assemblies\</OutputPath>

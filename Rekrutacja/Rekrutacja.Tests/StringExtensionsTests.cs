@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using Rekrutacja.Extensions;
 using Rekrutacja.Workers.Enums;
 using Rekrutacja.Workers.Managers;
@@ -10,10 +10,10 @@ using static Rekrutacja.Workers.Template.TemplateWorker;
 
 namespace Rekrutacja.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class StringExtensionsTests
     {
-        [TestMethod]
+        [Test]
         public void Should_Return_Zero_If_Empty()
         {
             //Arrange
@@ -22,7 +22,7 @@ namespace Rekrutacja.Tests
             //Assert
             Assert.AreEqual(0,testData.ConvertToInt());
         }
-        [TestMethod]
+        [Test]
         public void Should_Return_Correct_Int()
         {
             //Arrange
@@ -31,7 +31,7 @@ namespace Rekrutacja.Tests
             //Assert
             Assert.AreEqual(2, testData.ConvertToInt());
         }
-        [TestMethod]
+        [Test]
         public void Should_ReturnCorrect_Negative()
         {
             //Arrange
@@ -40,7 +40,7 @@ namespace Rekrutacja.Tests
             //Assert
             Assert.AreEqual(-2, testData.ConvertToInt());
         }
-        [TestMethod]
+        [Test]
         public void Should_Throw_Exception_If_Incorrect_Minus()
         {
             //Arrange
@@ -55,7 +55,7 @@ namespace Rekrutacja.Tests
             catch (ArgumentException) { }
             catch (Exception) { Assert.Fail(); }
         }
-        [TestMethod]
+        [Test]
         public void Should_Throw_Exception_If_Non_Minus_Or_Digit_found()
         {
             //Arrange
