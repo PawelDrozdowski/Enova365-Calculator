@@ -1,3 +1,7 @@
+# Potencjalne ulepszenia
+1. Skorzystać z dziedziczenia przy tworzeniu osobnych przycisków kalkulatora
+2. Dopisać testy integracyjne, sprawdzające czy cechy pracowników są poprawne
+
 # Rekrutacja
 Zadanie rekrutacyjne w firmie DRIT
 1. Prosze pobrać projekt i na jego podstawie zrobić zadanie. Gotowy projekt proszę wrzucić na własne repozytorium i należy przesłać link do rozwiązania.
