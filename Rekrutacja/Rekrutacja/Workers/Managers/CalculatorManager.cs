@@ -10,21 +10,41 @@ namespace Rekrutacja.Workers.Managers
 {
     public class CalculatorManager
     {
-        //todo pozostałe operacje
         public static CalculatorResults GetCalculatorResults(Pkt1WorkerParametry parametry)
         {
-            ThrowExceptionIfUnknownOperation(parametry);
+            ThrowExceptionIfIllegalOperation(parametry.Operacja, parametry.B);
+
+            double wynik = 0;
+            switch (parametry.Operacja)
+            {
+                case "+":
+                    wynik = parametry.A + parametry.B;
+                    break;
+                case "-":
+                    wynik = parametry.A - parametry.B;
+                    break;
+                case "*":
+                    wynik = parametry.A * parametry.B;
+                    break;
+                case "/":
+                    wynik = parametry.A / parametry.B;
+                    break;
+            }
+
             return new CalculatorResults
             {
-                Wynik = parametry.A + parametry.B,
+                Wynik = wynik,
                 DataObliczen = parametry.DataObliczen
             };
         }
 
-        private static void ThrowExceptionIfUnknownOperation(Pkt1WorkerParametry parametry)
+        private static void ThrowExceptionIfIllegalOperation(string operation, int b)
         {
-            if (parametry.Operacja != "+")
-                throw new Exception("Wersja próbna - można wybrać tylko operację: [+]");
+            string[] legalValues = new string[] { "+", "-", "/", "*" };
+            if (!legalValues.Any(x => x == operation))
+                throw new Exception($"Nieznana operacja [{operation}]");
+            if (operation == "/" && b == 0)
+                throw new ArgumentException("Nie można dzielić przez zero");
         }
     }
 }
