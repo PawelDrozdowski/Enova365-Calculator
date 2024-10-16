@@ -3,4 +3,11 @@
   <PropertyGroup>
     <TargetFramework>$(SonetaTargetFramework)</TargetFramework>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="MSTest.TestFramework" Version="2.2.10" />
+    <PackageReference Include="xunit.extensibility.core" Version="2.9.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Rekrutacja\Rekrutacja.csproj" />
+  </ItemGroup>
 </Project>
